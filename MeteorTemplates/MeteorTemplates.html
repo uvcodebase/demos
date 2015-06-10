@@ -1,0 +1,87 @@
+<head>
+  <title>MeteorTemplates</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+
+
+  <div>
+  {{ ! This is a comment using Handlebars }}
+
+  {{ ! Lets look at the numbers variable }}
+  <h3>Numbers: </h3> {{ numbers }}
+
+  {{ ! But we probably want to display it in a nicer way, for example as a bulleted list }}
+  <ul>
+  {{ #each numbers }}
+    <li> {{ this }} {{ !Notice the special keyword "this" }}
+    </li>
+  {{ /each }}
+  </ul>
+  </div>
+  {{ ! We can also do the same thing with the numbers }}
+  <div>
+  <p>
+  <h3>Letters:</h3> {{ letters }}
+  {{ #each letters }}
+    {{ . }} :**: {{ ! The '.' is also a special character that means the same as 'this'}}
+  {{ /each }}
+  </p>
+  </div>
+  
+  <div><p>
+  {{ ! Now let's get tricky, what if we want a 2D table of numbers and letters }}
+  <h3>Numbered letters:</h3>
+  {{ #each numbers }}
+    <li> {{ this }}. 
+    {{ #each letters }}
+      {{ this }} :**: 
+    {{ /each }}
+     </li>
+  {{ /each }}
+  </p></div>
+
+  <div><p>
+  {{ ! What is we wanted to make a table or array of the numbers/letters ? }}
+  <h3>Numbered row, lettered column</h3>
+  <table>
+  {{ #each numbers }}
+    <tr>
+    {{ #each letters }}
+      <td>{{ .. }}{{ . }}</td>
+    {{ /each }}
+    </tr>
+  {{ /each }}
+  </table>
+  </p></div>
+
+  <div><p>
+  <h3>JSON loop: </h3>
+  {{ #each nest}}
+    Egg's are made of {{ egg }}
+    Birds are made of {{ bird }}
+  {{ /each }}
+  </p></div>
+
+  <div><p> 
+  {{ ! How does that work with nested loops }}
+  <h3>Nested JSON Loops:</h3>
+  {{ #each nest }}
+    {{ #each numbers }}
+      <p>
+      {{ . }}. Egg's are made of {{ ../egg }}.
+      Birds are made of {{ ../bird }}.
+      </p>
+    {{ /each }}
+  {{ /each }}
+  </p></div>
+
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
