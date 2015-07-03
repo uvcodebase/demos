@@ -7,7 +7,7 @@ if (Meteor.isClient) {
     letters: ['a', 'b', 'c'],
     numbers: [1, 2, 3],
     // Add some nested data
-    nest : [{'egg': 'yolk', 'bird': 'bones'}]
+    nest : [{'egg': 'yolk', 'bird': 'bones'}, {'egg': 'whites', 'bird' : 'guts'}]
   })
 
   Template.hello.helpers({
@@ -20,6 +20,9 @@ if (Meteor.isClient) {
     'click button': function () {
       // increment the counter when button is clicked
       Session.set('counter', Session.get('counter') + 1);
+      if (Session.get('counter') == 5){
+        alert('stop clikcing this')
+      }
     }
   });
 }

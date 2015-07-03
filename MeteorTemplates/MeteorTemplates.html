@@ -61,7 +61,7 @@
   <div><p>
   <h3>JSON loop: </h3>
   {{ #each nest}}
-    Egg's are made of {{ egg }}
+    Eggs are made of {{ egg }}
     Birds are made of {{ bird }}
   {{ /each }}
   </p></div>
@@ -70,11 +70,13 @@
   {{ ! How does that work with nested loops }}
   <h3>Nested JSON Loops:</h3>
   {{ #each nest }}
-    {{ #each numbers }}
-      <p>
-      {{ . }}. Egg's are made of {{ ../egg }}.
-      Birds are made of {{ ../bird }}.
-      </p>
+    {{ #each letters }}
+      {{ #each numbers }}
+        <p>
+        {{ . }}. {{ .. }}) Eggs are made of {{ ../../egg }}.
+        Birds are made of {{ ../../bird }}.
+        </p>
+      {{ /each }}
     {{ /each }}
   {{ /each }}
   </p></div>
