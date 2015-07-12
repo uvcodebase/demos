@@ -1,0 +1,9 @@
+[ {'bones': {'calories': 0,
+             'units': 'g'}},
+  {'cheese': {'calories': 1000000,
+              'units':'blocks'}},
+  {'water' : {'calories': 0,
+              'units':'gallons'}},
+  {'bay leaves' : {'calories': 10,
+                   'units' : 'leaf'}}
+]

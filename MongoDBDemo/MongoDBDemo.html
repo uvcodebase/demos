@@ -1,0 +1,40 @@
+<head>
+  <title>MongoDBDemo</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+  <div>
+  <h2> Add new ingredient </h2>
+  {{> ingredient}}
+  </div>
+  <div>
+  <h2> Add new recipe </h2>
+  {{> recipe}}
+  </div>
+</body>
+
+<template name="ingredient">
+  <form>
+  Name: <input type='text' id='ingName' /><br>
+  Calories: <input type=number id='ingCal' /><br>
+  <button>Save</button>
+  </form>
+</template>
+
+<template name='recipe'>
+  Name: <input type='text' /><br>
+  Ingredients: <input list='ingredientList'/><button id="add">x</button> <br>
+  <button id="add">Add</button><br>
+  {{ >ingredient_datalist }}
+  Instructions <input type=text /><br>
+  <button>Save</button>
+</template>
+
+<template name="ingredient_datalist">
+  <datalist id="ingredientList">
+    {{ #each ingredients }}
+      <option value="{{ _id }}"></option>
+    {{ /each }}
+  </datalist>
+</template>
