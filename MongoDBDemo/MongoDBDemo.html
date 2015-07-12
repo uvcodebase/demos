@@ -12,6 +12,15 @@
   <h2> Add new recipe </h2>
   {{> recipe}}
   </div>
+  <div><h2> Existing Ingredients </h2>
+  {{> ingredientlist}}
+  </div>
+  <div><h2> Existing Recipes </h2>
+  {{> recipelist}}
+  </div>
+  <div><h2> High Calorie Ingredients </h2>
+  {{> ingredientlisthigh}}
+  </div>
 </body>
 
 <template name="ingredient">
@@ -23,18 +32,44 @@
 </template>
 
 <template name='recipe'>
-  Name: <input type='text' /><br>
-  Ingredients: <input list='ingredientList'/><button id="add">x</button> <br>
-  <button id="add">Add</button><br>
-  {{ >ingredient_datalist }}
-  Instructions <input type=text /><br>
-  <button>Save</button>
+  <form>
+    Name: <input type='text' id='recipeName'/><br>
+    Ingredients: <input list='ingredientList' id="recipeIngredients"/><button id="add">x</button> <br>
+    <button id="add">Add</button><br>
+    {{ >ingredient_datalist }}
+    Instructions <input type=text id="recipeInstructions" /><br>
+    <button>Save</button>
+  </form>
 </template>
 
 <template name="ingredient_datalist">
   <datalist id="ingredientList">
     {{ #each ingredients }}
-      <option value="{{ _id }}"></option>
+      <option value="{{ name }}"></option>
     {{ /each }}
   </datalist>
+</template>
+
+<template name="ingredientlist">
+  <ul>
+    {{ #each ingredients }}
+      <li> {{ name }}: {{ calories }} calories   </li>
+    {{ /each }}
+  </ul>
+</template>
+
+<template name="recipelist">
+  <ul>
+    {{ #each recipe }}
+      <li> {{ name }} </li>
+    {{ /each }}
+  </ul>
+</template>
+
+<template name="ingredientlisthigh">
+  <ul>
+    {{ #each ingredients }}
+      <li> {{ name }}: {{ calories }} calories   </li>
+    {{ /each }}
+  </ul>
 </template>

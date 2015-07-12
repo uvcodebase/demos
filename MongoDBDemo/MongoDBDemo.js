@@ -11,18 +11,44 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.ingredientlist.helpers({
+    ingredients: function () {
+      return IngredientDB.find({});
+    }
+  });
+
+  Template.ingredientlisthigh.helpers({
+    ingredients: function () {
+      return IngredientDB.find({calories : {$gt : 0}}, {sort: {calories:1}});
+    }
+  });
+
+  Template.recipelist.helpers({
+    recipe: function () {
+      return RecipeDB.find({});
+    }
+  });
+
+
   Template.recipe.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+    'click button': function (e) {
+      e.preventDefault()
+      var name = e.target.form['recipeName'].value
+      var Ingredients = e.target.form['recipeIngredients'].value
+      var Instructions = e.target.form['recipeInstructions'].value
+      console.log(name)
+      console.log(Ingredients)
+      console.log(Instructions)
+      // Insert these into the database
     }
   });
 
   Template.ingredient.events({
     'click button': function(e) {
+      //e.preventDefault()
       var name = e.target.form['ingName'].value
       var cal = e.target.form['ingCal'].value
-      IngredientDB.insert({_id : name, calories : cal})
+      IngredientDB.insert({name : name, calories : Number(cal)})
     }
   })
 }
@@ -31,9 +57,18 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
     if (IngredientDB.findOne() == null) {
-      console.log("no db")
-      //var ing = JSON.parse(Asset.getText('testIngredients.json'))
-      //console.log(ing)
+      console.log("no ingredients db")
+      var ings = JSON.parse(Assets.getText('testIngredients.json'))
+      _.each(ings, function(ing) {
+        IngredientDB.insert(ing);
+      });
+    }
+    if (RecipeDB.findOne() == null) {
+      console.log("no recipe db")
+      var recips = JSON.parse(Assets.getText('testRecipeDB.json'))
+      _.each(recips, function(recip) {
+        RecipeDB.insert(recip);
+      });
     }
   });
 }

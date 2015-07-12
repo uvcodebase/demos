@@ -1,0 +1,22 @@
+[
+    {
+        "name": "bones",
+        "calories": 0,
+        "units": "g"
+    },
+    {
+        "name":"cheese", 
+        "calories": 1000000,
+        "units": "blocks"
+    },
+    {
+        "name":"water",
+        "calories": 0,
+        "units": "gallons"
+    },
+    {
+        "name":"bay leaves",
+        "calories": 10,
+        "units": "leaf"
+    }
+]
