@@ -19,7 +19,7 @@ if (Meteor.isClient) {
 
   Template.ingredientlisthigh.helpers({
     ingredients: function () {
-      return IngredientDB.find({calories : {$gt : 0}}, {sort: {calories:1}});
+      return IngredientDB.find({calories : {$gt : 0}}, {sort: {name:1}});
     }
   });
 
@@ -59,6 +59,7 @@ if (Meteor.isServer) {
     if (IngredientDB.findOne() == null) {
       console.log("no ingredients db")
       var ings = JSON.parse(Assets.getText('testIngredients.json'))
+      console.log(ings)
       _.each(ings, function(ing) {
         IngredientDB.insert(ing);
       });
